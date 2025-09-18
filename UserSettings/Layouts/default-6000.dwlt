@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 891
-    y: 377
+    x: 917
+    y: 297
     width: 875
     height: 572
   m_ShowMode: 4
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 864
+  controlID: 123
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 142
+  controlID: 51
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 100
+  controlID: 52
   draggingID: 0
 --- !u!114 &12
 MonoBehaviour:
@@ -966,9 +966,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -13.390343, y: -21.823483, z: -9.9621315}
+    m_Target: {x: -13.522445, y: -18.928926, z: -9.926254}
     speed: 2
-    m_Value: {x: -13.390343, y: -21.823483, z: -9.9621315}
+    m_Value: {x: -13.522445, y: -18.928926, z: -9.926254}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1018,9 +1018,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 8.337668
+    m_Target: 4.7498884
     speed: 2
-    m_Value: 8.337668
+    m_Value: 4.7498884
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1268,7 +1268,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4c8fffff08fbffff
+      m_ExpandedIDs: 08fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1340,7 +1340,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Prefabs
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1350,16 +1350,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 87
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Prefabs
   m_LastFoldersGridSize: 87
   m_LastProjectPath: C:\Users\kamuy\Documents\Unity\EscapeDarkness
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: b4ba0000
-    m_LastClickedID: 47796
-    m_ExpandedIDs: 00000000c6b70000c8b70000
+    m_SelectedIDs: dcba0000
+    m_LastClickedID: 47836
+    m_ExpandedIDs: 00000000d8b70000dab70000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1388,7 +1388,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: ec1dffff
     m_LastClickedID: -57876
-    m_ExpandedIDs: 00000000c6b70000c8b70000
+    m_ExpandedIDs: 00000000d8b70000dab70000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1442,7 +1442,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 198}
     m_GridSize: 87
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 102
@@ -1597,7 +1597,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -28852
+  m_LastSelectedObjectID: -1274
 --- !u!114 &23
 MonoBehaviour:
   m_ObjectHideFlags: 52
