@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         anime = GetComponent<Animator>();
 
         //スポットライトを所持していればスポットライト表示
-        if (GameManager.hasSpotLigit)
+        if (GameManager.hasSpotLight)
         {
             spotLight.SetActive(true);
         }
@@ -58,44 +58,45 @@ public class PlayerController : MonoBehaviour
     public float GetAngle()
     {
         //現在座標の取得
-        Vector2 flomPos = transform.position;
+        Vector2 fromPos = transform.position;
 
-        //その瞬間のキーの入力値(axisH、axisV)に応じた予測座標の取得
-        Vector2 toPos = new Vector2(flomPos.x + axisH, flomPos.y + axisV);
+        //その瞬間のキー入力値(axisH、axisV)に応じた予測座標の取得
+        Vector2 toPos = new Vector2(fromPos.x + axisH, fromPos.y + axisV);
 
         float angle; //returnされる値の準備
 
-        //もしも何かしらの入力があれば、新たに角度算出
+        //もしも何かしらの入力があれば あらたに角度算出
         if (axisH != 0 || axisV != 0)
         {
-            float dirX = toPos.x - flomPos.x;
-            float dirY = toPos.y - flomPos.y;
+            float dirX = toPos.x - fromPos.x;
+            float dirY = toPos.y - fromPos.y;
 
-            //第一引数に高さY、第二引数に底辺Xを与えると角度をラジアン形式で算出(円周の長さで表現)
+            //第一引数に高さY、第二引数に底辺Xを与えると角度をラジアン形式で算出（円周の長さで表現）
             float rad = Mathf.Atan2(dirY, dirX);
 
-            //ラジアン値をオイラー値(デグリー)に変換
+            //ラジアン値をオイラー値(デグリー）に変換
             angle = rad * Mathf.Rad2Deg;
         }
-        //何も入力されていなければ、前フレームの角度情報を据え置き
+        //何も入力されていなければ 前フレームの角度情報を据え置き
         else
         {
             angle = angleZ;
         }
-
         return angle;
     }
+
 
     void Animation()
     {
         //なんらかの入力がある場合
         if (axisH != 0 || axisV != 0)
         {
-            //ひとまずRunアニメを走らせます
+
+            //ひとまずRunアニメを走らせる
             anime.SetBool("run", true);
 
-            //angleZを利用して方角を決める、パラメータdirection int型
-            //int型のdirection 下;0 上;1 右;2 左; それ以外
+            //angleZを利用して方角を決める　パラメータdirection int型
+            //int型のdirection 下：0　上：1　右：2　左：それ以外
 
             if (angleZ > -135f && angleZ < -45f) //下方向
             {
@@ -120,7 +121,48 @@ public class PlayerController : MonoBehaviour
         {
             anime.SetBool("run", false); //走るフラグをOFF
         }
-
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //ぶつかった相手がEnemyだったら
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            GetDamage(collision.gameObject); //ダメージ処理の開始
+        }
+    }
+
+    void GetDamage(GameObject enemy)
+    {
+        //ステータスがplayingでなければ何もせず終わり
+        if (GameManager.gameState != GameState.playing) return;
+
+        GameManager.playerHP--; //プレイヤーHPを1減らす
+
+        if (GameManager.playerHP > 0)
+        {
+            //そこまでのプレイヤーの動きをいったんストップ
+            rbody.linearVelocity = Vector2.zero; //new Vector2(0,0)
+            //プレイヤーと敵との差を取得し、方向を決める
+            Vector3 v = (transform.position - enemy.transform.position).normalized;
+            //決まった方向に押される
+            rbody.AddForce(v * 4, ForceMode2D.Impulse);
+
+            //点滅するためのフラグ
+            inDamage = true;
+
+            //時間差で0.25秒後に点滅フラグ解除
+            Invoke("DamageEnd", 0.25f);
+        }
+        else
+        {
+            //残HPが残っていなければゲームオーバー
+            //GameOver();
+        }
+    }
+
+    void DamageEnd()
+    {
+        inDamage = false; //点滅ダメージフラグを解除
+    }
 }
