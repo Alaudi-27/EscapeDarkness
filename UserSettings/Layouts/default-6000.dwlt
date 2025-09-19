@@ -966,9 +966,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -14.12115, y: -21.295338, z: -9.917451}
+    m_Target: {x: -15.15526, y: -22.873798, z: -9.889712}
     speed: 2
-    m_Value: {x: -14.12115, y: -21.295338, z: -9.917451}
+    m_Value: {x: -15.15526, y: -22.873798, z: -9.889712}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1018,9 +1018,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 3.869388
+    m_Target: 1.0953655
     speed: 2
-    m_Value: 3.869388
+    m_Value: 1.0953655
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1268,7 +1268,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 06fbffff08fbffff
+      m_ExpandedIDs: 08fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1357,9 +1357,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: f4ba0000
-    m_LastClickedID: 47860
-    m_ExpandedIDs: 00000000f4b70000f6b70000
+    m_SelectedIDs: 10bb0000
+    m_LastClickedID: 47888
+    m_ExpandedIDs: 0000000022b8000024b80000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1388,7 +1388,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: ec1dffff
     m_LastClickedID: -57876
-    m_ExpandedIDs: 00000000f4b70000f6b70000
+    m_ExpandedIDs: 0000000022b8000024b80000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1442,7 +1442,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 93}
     m_GridSize: 87
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 102
@@ -1597,7 +1597,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -1274
+  m_LastSelectedObjectID: -2470
 --- !u!114 &23
 MonoBehaviour:
   m_ObjectHideFlags: 52
