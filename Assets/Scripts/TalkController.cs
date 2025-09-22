@@ -51,10 +51,11 @@ public class TalkController : MonoBehaviour
             nameText.text = message.msgArray[i].name;
             messageText.text = message.msgArray[i].message;
 
+            //yield return new WaitForSeconds(0.1f); //0.1秒待つ
             yield return new WaitForSecondsRealtime(0.1f); //0.1秒待つ
 
-            while (!Input.GetKeyDown(KeyCode.E)) //Eキーが押されるまで
-            {
+            while (!Input.GetKeyDown(KeyCode.E))
+            { //Eキーがおされるまで
                 yield return null; //何もしない
             }
         }
@@ -69,6 +70,8 @@ public class TalkController : MonoBehaviour
         isTalk = false; //トーク中を解除
         Time.timeScale = 1.0f; //ゲームスピードをもとに戻す
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -89,4 +92,5 @@ public class TalkController : MonoBehaviour
             isPlayerInRange = false;
         }
     }
+
 }

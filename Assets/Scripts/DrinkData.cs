@@ -15,7 +15,7 @@ public class DrinkData : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Player‚ÌHP‚ªÅ‘å‚È‚ç‰½‚à‚µ‚È‚¢
+            //Player‚ÌHP‚ªÅ‘å‚È‚ç‚È‚É‚à‚µ‚È‚¢
             if (GameManager.playerHP < 3)
             {
                 GameManager.playerHP++;

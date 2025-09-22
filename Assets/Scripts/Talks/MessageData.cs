@@ -17,5 +17,3 @@ public class MessageData : ScriptableObject
 {
     public Message[] msgArray; //Messageクラスの配列
 }
-
-

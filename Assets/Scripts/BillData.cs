@@ -16,7 +16,7 @@ public class BillData : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.bill++; //1増やす
-            //該当するフラグをON
+            //該当する取得フラグをON
             GameManager.itemsPickedState[itemNum] = true;
 
             //アイテム取得演出
@@ -27,9 +27,9 @@ public class BillData : MonoBehaviour
             rbody.bodyType = RigidbodyType2D.Dynamic;
 
             //③上に打ち上げ（上向き5の力）
-            rbody.AddForce(new Vector2(0, 5), ForceMode2D.Force);
+            rbody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
 
-            //④自分自身を抹消（0.5秒後）
+            //④自分自身（オブジェクトごと）を抹消（0.5秒後）
             Destroy(gameObject, 0.5f);
         }
     }

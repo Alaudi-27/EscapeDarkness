@@ -7,7 +7,7 @@ public class SpotLight : MonoBehaviour
 
     void LateUpdate()
     {
-        //寸前までのスポットライトの回転値（Z軸飲み取得）
+        //寸前までのスポットライトの回転値（Z軸のみ取得）
         //float currentAngle = transform.eulerAngles.z;
 
         //プレイヤーの角度
@@ -19,5 +19,6 @@ public class SpotLight : MonoBehaviour
         //現在の回転を（寸前の回転）→（ターゲットの回転）になるように
         //なめらかに補間する Quaternion.Slerpメソッド
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
     }
 }
