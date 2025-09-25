@@ -36,6 +36,8 @@ public class RoomManager : MonoBehaviour
             LoadKeysPosition(); //キーの配置の再現
             LoadItemsPosition(); //アイテムの配置の再現
             LoadDoorsPosition(); //ドアの配置の再現
+
+            PlayerPosition(); //プレイヤーの配置
         }
     }
 
@@ -194,6 +196,26 @@ public class RoomManager : MonoBehaviour
                 }
             }
         }
+
+        //ダミー扉の生成
+        foreach (GameObject spots in roomSpots)
+        {
+            //すでに配置済みかどうか
+            bool match = false;
+
+            foreach (int doorsNum in doorsPositionNumber)
+            {
+                if (spots.GetComponent<RoomSpot>().spotNum == doorsNum)
+                {
+                    match = true; //そのスポット番号にはすでに配置済み
+                    break;
+                }
+            }
+
+            //数字がマッチしていなければこれまで何も配置されていないということなのでダミードアを配置
+            if (!match) Instantiate(dummyDoor, spots.transform.position, Quaternion.identity);
+        }
+
     }
 
     //生成したドアのセッティング
@@ -313,30 +335,10 @@ public class RoomManager : MonoBehaviour
         //出入り口(鍵1～鍵3の3つの出入り口）の分だけ繰り返し
         for (int i = 0; i < doorsPositionNumber.Length; i++)
         {
-            int rand; //ランダムな数の受け皿
-            bool unique; //重複していないかのフラグ
-
-            do
-            {
-                unique = true; //問題なければそのままループを抜ける予定
-                rand = Random.Range(1, (roomSpots.Length + 1)); //1番からスポット数の番号をランダムで取得
-
-                //すでにランダムに取得した番号がどこかのスポットとして割り当てられていないか、doorsPositionNumber配列の状況を全点検
-                foreach (int numbers in doorsPositionNumber)
-                {
-                    //取り出した情報とランダム番号が一致していたら重複したいたということになる
-                    if (numbers == rand)
-                    {
-                        unique = false; //唯一のユニークなものではない
-                        break;
-                    }
-                }
-            } while (!unique);
-
-            //全スポットを見回りしてrandと同じのスポットを探す
+            //全スポットを見回りして記録された番号と同じスポットを探す
             foreach (GameObject spots in roomSpots)
             {
-                if (spots.GetComponent<RoomSpot>().spotNum == rand)
+                if (spots.GetComponent<RoomSpot>().spotNum == doorsPositionNumber[i])
                 {
                     //ルームを生成
                     GameObject obj = Instantiate(
@@ -345,22 +347,67 @@ public class RoomManager : MonoBehaviour
                         Quaternion.identity
                         );
 
-                    //何番スポットが選ばれたのかstatic変数に記憶していく
-                    doorsPositionNumber[i] = rand;
-
                     //生成したドアのセッティング
                     DoorSetting(
                         obj, //対象オブジェクト
                         "fromRoom" + (i + 1), //生成したドアの識別名
                         "Room" + (i + 1), //そこの出入り口に触れたときどこに行くのか
                         "Main", //行き先となるシーン名
-                        false, //ドアの開錠の状況
+                        GameManager.doorsOpenedState[i], //ドアの開錠の状況をstaticから読み取る
                         DoorDirection.down, //この出入り口に戻った時のプレイヤーの配置
                         messages[i]
                         );
                 }
             }
         }
+
+        //ダミー扉の生成
+        foreach (GameObject spots in roomSpots)
+        {
+            //すでに配置済みかどうか
+            bool match = false;
+
+            foreach (int doorsNum in doorsPositionNumber)
+            {
+                if (spots.GetComponent<RoomSpot>().spotNum == doorsNum)
+                {
+                    match = true; //そのスポット番号にはすでに配置済み
+                    break;
+                }
+            }
+
+            //数字がマッチしていなければこれまで何も配置されていないということなのでダミードアを配置
+            if (!match) Instantiate(dummyDoor, spots.transform.position, Quaternion.identity);
+        }
     }
 
+    //Playerの配置
+    void PlayerPosition()
+    {
+        //全Roomオブジェクトの取得
+        GameObject[] roomDatas = GameObject.FindGameObjectsWithTag("Room");
+
+        foreach (GameObject room in roomDatas)
+        {
+            //それぞれのRoomのRoomDataスクリプトの情報を変数rに代入
+            RoomData r = room.GetComponent<RoomData>();
+
+            //取得してきたRoomの識別名が「今目標にしている行先」の識別名(static変数)と同じなら
+            if (r.roomName == toRoomNumber)
+            {
+                float posY = 1.5f; //最初は対象となるRoomの上座標
+                if (r.direction == DoorDirection.down)
+                {
+                    posY = -1.5f; //もしdirectionがdown設定のRoomならプレイヤーの位置は下側になる
+                }
+
+                //プレイヤーの位置を決める
+                player.transform.position = new Vector2(
+                    room.transform.position.x,
+                    room.transform.position.y + posY
+                    );
+                break; //目的のRoomが見つかって、チェックの必要性がなくなったのでforeachを中断
+            }
+        }
+    }
 }
